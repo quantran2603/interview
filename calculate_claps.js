@@ -1,5 +1,7 @@
 const inputRegex = /^\d+ \d+$/;
 const clapDigits = [3, 6, 9];
+const maxInputNumber = 100000000;
+const minInputNumber = 1;
 
 const calculateTotalClaps = (number) => {
     let totalClaps = 0;
@@ -69,7 +71,7 @@ const calculateGapClapsInput = (input) => {
     const a = parseInt(parts[0]);
     const b = parseInt(parts[1]);
 
-    if (a < 1 || b < 1 || a > b || a > 100000000 || b > 100000000) {
+    if (a < minInputNumber || b < minInputNumber || a > b || a > maxInputNumber || b > maxInputNumber) {
         return "";
     }
 
