@@ -1,3 +1,4 @@
+const inputRegex = /^\d+ \d+$/;
 const clapDigits = [3, 6, 9];
 
 const calculateTotalClaps = (number) => {
@@ -34,7 +35,7 @@ const calculateClapsOfNumber = (number) => {
     let claps = 0;
 
     for (const letter of numberString) {
-        if (letter === '3' || letter === '6' || letter === '9') {
+        if (letter === "3" || letter === "6" || letter === "9") {
             ++claps;
         }
     }
@@ -48,8 +49,32 @@ const calculateGapClaps = (number1, number2) => {
     const number2TotalClaps = calculateTotalClaps(number2);
 
     return number2TotalClaps - number1TotalClaps + number1Claps;
-}
+};
 
-const number1 = 999999;
-const number2 = 10000000;
-console.log(calculateGapClaps(number1, number2));
+const calculateGapClapsInput = (input) => {
+    if (typeof input !== "string") {
+        return "";
+    }
+
+    if (!inputRegex.test(input)) {
+        return "";
+    }
+
+    const parts = input.split(" ");
+
+    if (parts.length !== 2) {
+        return "";
+    }
+
+    const a = parseInt(parts[0]);
+    const b = parseInt(parts[1]);
+
+    if (a < 1 || b < 1 || a > b || a > 100000000 || b > 100000000) {
+        return "";
+    }
+
+    return calculateGapClaps(a, b);
+};
+
+const input = "999999 10000000";
+console.log(calculateGapClapsInput(input));
